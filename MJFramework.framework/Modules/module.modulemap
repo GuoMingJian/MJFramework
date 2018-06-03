@@ -1,0 +1,6 @@
+framework module MJFramework {
+  umbrella header "MJFramework.h"
+
+  export *
+  module * { export * }
+}
