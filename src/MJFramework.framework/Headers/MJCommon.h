@@ -73,14 +73,26 @@ typedef NS_ENUM(NSInteger, MJ_Alignment)
 
 #pragma mark - 提示框
 
+/**
+ 弹出提示框
+ */
 + (void)showTipView:(NSString *)text;
 
+/**
+ 弹出提示框；duration时间后消失
+ */
 + (void)showTipView:(NSString *)text
            duration:(CGFloat)duration;
 
+/**
+ 弹出提示框；alignment显示位置，MJ_Top上，MJ_Center 中, MJ_Bottom 下
+ */
 + (void)showTipView:(NSString *)text
           alignment:(MJ_Alignment)alignment;
 
+/**
+ 弹出提示框；时间，位置
+ */
 + (void)showTipView:(NSString *)text
            duration:(CGFloat)duration
           alignment:(MJ_Alignment)alignment;
