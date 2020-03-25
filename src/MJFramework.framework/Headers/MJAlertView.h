@@ -106,12 +106,17 @@ static CGFloat kAlertRadius = 5;
 @property (strong, nonatomic) UIButton *confirmButton;
 
 #pragma mark - 点击按钮 Block
-@property (copy, nonatomic) void (^ClickButtonCallback)(int btnIndex, UIButton *btn);
+typedef void(^ClickButtonCallback)(int btnIndex, UIButton *btn);
+@property (copy, nonatomic) ClickButtonCallback clickButtonCallback;
 
 #pragma mark - private
 
 /// 更新弹窗布局
 - (void)updateUI;
+
+/// 展示弹窗
+- (void)showAtViewController:(UIViewController *)vc
+                  clickBlock:(ClickButtonCallback)clickBlock;
 
 /// 移除弹窗
 - (void)hidenView;
@@ -120,31 +125,31 @@ static CGFloat kAlertRadius = 5;
 
 /// 获取弹窗（无标题、单按钮、内容与顶部间距30px）
 /// @param content 弹窗内容
-+ (id)alertViewContent:(NSString *)content;
++ (id)getAlertWithContent:(NSString *)content;
 
 /// 获取弹窗（无标题、单按钮）
 /// @param content 弹窗内容
 /// @param topSpace 内容与顶部间距
-+ (id)alertViewContent:(NSString *)content
-              topSpace:(CGFloat)topSpace;
++ (id)getAlertWithContent:(NSString *)content
+                 topSpace:(CGFloat)topSpace;
 
 /// 获取弹窗（可选显示标题、单按钮）
 /// @param title 当title内容为空时，隐藏title
 /// @param content 弹窗内容
 /// @param confirmBtnText 按钮文本
-+ (id)alertViewTitle:(NSString *)title
-             content:(NSString *)content
-      confirmBtnText:(NSString *)confirmBtnText;
++ (id)getAlertWithTitle:(NSString *)title
+                content:(NSString *)content
+         confirmBtnText:(NSString *)confirmBtnText;
 
 /// 获取弹窗（可选显示标题、双按钮）
 /// @param title 当title内容为空时，隐藏title
 /// @param content 弹窗内容
 /// @param leftBtnText 左按钮文本
 /// @param rightBtnText 右按钮文本
-+ (id)alertViewTitle:(NSString *)title
-             content:(NSString *)content
-         leftBtnText:(NSString *)leftBtnText
-        rightBtnText:(NSString *)rightBtnText;
++ (id)getAlertWithTitle:(NSString *)title
+                content:(NSString *)content
+            leftBtnText:(NSString *)leftBtnText
+           rightBtnText:(NSString *)rightBtnText;
 
 @end
 

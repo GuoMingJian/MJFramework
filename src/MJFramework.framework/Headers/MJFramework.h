@@ -20,7 +20,7 @@ FOUNDATION_EXPORT const unsigned char MJFrameworkVersionString[];
 #import "MJCommon.h"
 #import "MJTipsView.h"
 #import "MJAlertView.h"
-#import "Reachability.h"
+#import "MJReachability.h"
 #import "MJMBProgressHUD.h"
 #import "MJProgressHUDManager.h"
 #import "GTMDefines.h"

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIFont (Ext)
 
+#pragma mark - PingFangSC 字体
+
 /// PingFangSC-Light
 /// @param fontSize 字体大小
 + (UIFont *)PFLight:(CGFloat)fontSize;
@@ -23,6 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// PingFangSC-Medium
 /// @param fontSize 字体大小
 + (UIFont *)PFMedium:(CGFloat)fontSize;
+
+/// PingFangSC-Semibold
+/// @param fontSize 字体大小
++ (UIFont *)PFSemibold:(CGFloat)fontSize;
+
+/// PingFangSC-Ultralight
+/// @param fontSize 字体大小
++ (UIFont *)PFUltralight:(CGFloat)fontSize;
+
+/// PingFangSC-Thin
+/// @param fontSize 字体大小
++ (UIFont *)PFThin:(CGFloat)fontSize;
 
 @end
 
