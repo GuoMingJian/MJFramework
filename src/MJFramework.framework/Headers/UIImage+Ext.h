@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param block 压缩完成后的图片
 + (void)compressWithMaxLengthKB:(NSUInteger)maxLengthKB
                           image:(UIImage *)image
-                          Block:(void (^)(NSData *imageData))block;
+                          block:(void (^)(NSData *imageData))block;
 
 /// 修复图片朝向
 + (UIImage *)fixImageOrientation:(UIImage *)aImage;

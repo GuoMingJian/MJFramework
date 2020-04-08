@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "MJFramework"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "some tools for iOS programming "
   s.homepage     = "https://github.com/GuoMingJian/MJFramework"
   s.license      = "MIT"
