@@ -114,9 +114,9 @@ typedef void(^ClickButtonCallback)(int btnIndex, UIButton *btn);
 /// 更新弹窗布局
 - (void)updateUI;
 
-/// 展示弹窗
-- (void)showAtViewController:(UIViewController *)vc
-                  clickBlock:(ClickButtonCallback)clickBlock;
+/// 展示弹窗 (传入view为nil时，则展示在keyWindow)
+- (void)showAtView:(UIView *)view
+        clickBlock:(ClickButtonCallback)clickBlock;
 
 /// 移除弹窗
 - (void)hidenView;

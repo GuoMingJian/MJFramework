@@ -36,6 +36,9 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 
 #pragma mark - 常用方法
 
+/// 获取当前view所在的控制器
+- (UIViewController *)viewController;
+
 /// 获取控件截图
 - (UIImage *)screenshotsImage;
 
