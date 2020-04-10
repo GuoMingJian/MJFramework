@@ -96,6 +96,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (int)secondsCountWithDate:(NSDate *)startDate
                     endDate:(NSDate *)endDate;
 
+/// 比较两个日期时间大小 (-1: str1 > str2; 0:相等; 1: str1 < str2)
++ (int)compareDateStr:(NSString *)str1
+          withDateStr:(NSString *)str2;
+
+/// 比较两个日期时间大小 (-1: date1 > date2; 0:相等; 1: date1 < date2)
++ (int)compareDate:(NSDate *)date1
+          withDate:(NSDate *)date2;
+
 #pragma mark - 正则表达式
 
 /// 验证表达式字符串是否正确
