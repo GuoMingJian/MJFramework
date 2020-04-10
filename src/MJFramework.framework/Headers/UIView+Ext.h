@@ -39,6 +39,9 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 /// 获取当前view所在的控制器
 - (UIViewController *)viewController;
 
+/// 获取当前正在显示的ViewController
++ (UIViewController *)findCurrentViewController;
+
 /// 获取控件截图
 - (UIImage *)screenshotsImage;
 
