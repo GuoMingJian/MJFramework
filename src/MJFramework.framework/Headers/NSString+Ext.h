@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+//// 网络
+//#import "MJReachability.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// iPhone 电量
 + (int)iPhoneBatteryLevel;
 
-/// iPhone 当前网络状态
-+ (NSString *)iPhoneNetworkType;
+///// iPhone 当前网络状态
+//+ (NSString *)iPhoneNetworkType;
 
 /// iPhone 当前连接WiFi的IP地址
 + (NSString *)iPhoneWIFI_ip;
