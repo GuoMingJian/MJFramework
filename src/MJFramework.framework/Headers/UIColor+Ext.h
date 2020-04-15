@@ -52,6 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 主题颜色
 + (UIColor *)themeColor;
 
+/// 根据当前（深色-浅色）模式，获取颜色
+/// @param lightColor 浅色（默认）
+/// @param darkColor 深色
++ (UIColor *)getDynamicColorWithLight:(UIColor *)lightColor
+                                 dark:(UIColor *)darkColor;
+
 @end
 
 NS_ASSUME_NONNULL_END
