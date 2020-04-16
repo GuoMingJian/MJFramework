@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary      = 'some tools for iOS programming'
   s.homepage     = 'https://github.com/GuoMingJian/MJFramework'
   s.author       = { 'guomingjian' => 'GuoMJ158@163.com' }
-  s.source       = { :git => 'https://github.com/GuoMingJian/MJFramework.git', :tag => s.version }
+  s.source       = { :git => 'https://github.com/GuoMingJian/MJFramework.git', :tag => 'v#{s.version}' }
   s.requires_arc = true
   s.ios.deployment_target = "9.0"
   s.source_files = 'MJFramework/MJFramework.h'
