@@ -7,6 +7,12 @@
 //
 
 #import "MJAlertView.h"
+//
+#import "MJMacro.h"
+#import "UIFont+Ext.h"
+#import "UIColor+Ext.h"
+#import "NSString+Ext.h"
+#import "UIView+Ext.h"
 
 @interface MJAlertView() <UIGestureRecognizerDelegate>
 

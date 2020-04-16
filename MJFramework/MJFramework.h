@@ -1,6 +1,6 @@
 //
 //  MJFramework.h
-//  MJFramework
+//  OC_MJFramework
 //
 //  Created by 郭明健 on 2020/4/15.
 //  Copyright © 2020 GuoMingJian. All rights reserved.
