@@ -1,14 +1,14 @@
 //
-//  MJHeader.h
+//  MJFramework.h
 //  MJFramework
 //
 //  Created by 郭明健 on 2020/4/15.
 //  Copyright © 2020 GuoMingJian. All rights reserved.
 //
 
-// V1.1.0
-#ifndef MJHeader_h
-#define MJHeader_h
+// V1.1.1
+#ifndef MJFramework_h
+#define MJFramework_h
 
 #ifdef __OBJC__
 
@@ -34,4 +34,4 @@
 
 #endif
 
-#endif /* MJHeader_h */
+#endif

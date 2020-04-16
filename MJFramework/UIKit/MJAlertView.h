@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MJHeader.h"
+#import "MJFramework.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
