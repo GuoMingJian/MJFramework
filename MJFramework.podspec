@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/GuoMingJian/MJFramework.git", :tag => "v#{s.version}" }
   #s.source_files = "MJFramework", "MJFramework/*.{h,m}", "MJFramework/**/*.{h,m}", "MJFramework/**/**/*.{h,m}"
-  s.vendored_frameworks = 'src/MJFramework.framework'
+  s.vendored_frameworks = 'MJFramework/MJFramework.framework'
   s.requires_arc = true
 
 
