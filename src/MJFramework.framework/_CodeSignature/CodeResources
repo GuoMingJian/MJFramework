@@ -44,6 +44,10 @@
 		<data>
 		YMaEppfjVmRCDiLqw/rGZuXRB9c=
 		</data>
+		<key>Headers/MJSession.h</key>
+		<data>
+		WwqfHKi975458mYG3YY42F4BMsA=
+		</data>
 		<key>Headers/MJTipsView.h</key>
 		<data>
 		O4RAF3NxxHsOWK10zyZKe7kSe/E=
@@ -86,7 +90,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		xNY+yIMH4PZLo4puE+U0Us7cWZE=
+		YpTF8Bd/MuwQJPT80l87d/Z93b8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -203,6 +207,17 @@
 			<key>hash2</key>
 			<data>
 			ZJMzLyBB0Xsim6DKKAWFaSDkDV5MVgnm4Ei6jnFAQDA=
+			</data>
+		</dict>
+		<key>Headers/MJSession.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			WwqfHKi975458mYG3YY42F4BMsA=
+			</data>
+			<key>hash2</key>
+			<data>
+			qcsSaxfH1hpEgXiD3Sw2gpCXodrJTFx9ynmKiVRLkxI=
 			</data>
 		</dict>
 		<key>Headers/MJTipsView.h</key>
