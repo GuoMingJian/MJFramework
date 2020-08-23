@@ -22,19 +22,16 @@ typedef NS_ENUM(int, MJAlignment)
 
 @interface MJTipsView : UIView
 
-#pragma mark - 自定义提示框
-
 /// 提示框与屏幕的最小间距，默认：30
-#define kSpacOfWindow 30
-
+@property (nonatomic, assign) CGFloat spacOfWindow;
 /// 文字与提示框间距最小间距，默认：15
-#define kSpacOfTipsView 15
-
+@property (nonatomic, assign) CGFloat spacOfTipsView;
 /// 文字字体
-#define kFont [UIFont fontWithName:@"PingFangSC-Regular" size:14]
-
+@property (nonatomic, strong) UIFont *textFont;
 /// 是否开启文字左右对齐
-#define kIsOpenTextLeftRightAlignment YES
+@property (nonatomic, assign) BOOL isOpenTextLeftRightAlignment;
+
+#pragma mark - 自定义提示框
 
 /// 弹出提示框（默认居中，2s消失）
 + (void)showTipsView:(NSString *)text;
@@ -49,6 +46,11 @@ typedef NS_ENUM(int, MJAlignment)
 
 /// 弹出提示框
 + (void)showTipsView:(NSString *)text
+            duration:(CGFloat)duration
+           alignment:(MJAlignment)alignment;
+
+/// 弹窗提示框
+- (void)showTipsView:(NSString *)text
             duration:(CGFloat)duration
            alignment:(MJAlignment)alignment;
 
