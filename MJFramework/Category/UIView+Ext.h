@@ -90,7 +90,8 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
     runTitleColor:(UIColor *)titleColor
        runLeftStr:(NSString *)leftStr
       runRightStr:(NSString *)rightStr
-          runFont:(UIFont *)font;
+          runFont:(UIFont *)font
+         complete:(void(^)(void))complete;
 
 @end
 

@@ -187,21 +187,21 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
 {
     CGFloat scale;
     CGRect newframe = self.frame;
-    
+
     if (newframe.size.height && (newframe.size.height > aSize.height))
     {
         scale = aSize.height / newframe.size.height;
         newframe.size.width *= scale;
         newframe.size.height *= scale;
     }
-    
+
     if (newframe.size.width && (newframe.size.width >= aSize.width))
     {
         scale = aSize.width / newframe.size.width;
         newframe.size.width *= scale;
         newframe.size.height *= scale;
     }
-    
+
     self.frame = newframe;
 }
 
@@ -352,7 +352,8 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
         UIFont *font = button.titleLabel.font;
         NSString *leftStr = @"重新发送(";
         NSString *rightStr = @"s）";
-        [self countDown:timeOut runBGColor:bgColor runTitleColor:titleColor runLeftStr:leftStr runRightStr:rightStr runFont:font];
+        [self countDown:timeOut runBGColor:bgColor runTitleColor:titleColor runLeftStr:leftStr runRightStr:rightStr runFont:font complete:^{
+        }];
     }
 }
 
@@ -362,7 +363,8 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
     runTitleColor:(UIColor *)titleColor
        runLeftStr:(NSString *)leftStr
       runRightStr:(NSString *)rightStr
-          runFont:(UIFont *)font {
+          runFont:(UIFont *)font
+         complete:(void(^)(void))complete {
     if (![self isKindOfClass:[UIButton class]]) {
         return;
     } else {
@@ -385,6 +387,9 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
                     [button setTitleColor:normalTitleColor forState:UIControlStateNormal];
                     [button setTitle:normalText forState:UIControlStateNormal];
                     button.titleLabel.font = normalFont;
+                    if (complete != nil) {
+                        complete();
+                    }
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
