@@ -138,3 +138,39 @@ IB_DESIGNABLE
 @end
 
 NS_ASSUME_NONNULL_END
+
+
+#pragma mark -
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class MJUnitFieldTextPosition;
+@interface MJUnitFieldTextRange : UITextRange <NSCopying>
+
+@property (nonatomic, readonly) MJUnitFieldTextPosition *start;
+@property (nonatomic, readonly) MJUnitFieldTextPosition *end;
+
+@property (nonatomic, readonly) NSRange range;
+
++ (nullable instancetype)rangeWithStart:(MJUnitFieldTextPosition *)start
+                                    end:(MJUnitFieldTextPosition *)end;
+
++ (nullable instancetype)rangeWithRange:(NSRange)range;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+#pragma mark -
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MJUnitFieldTextPosition : UITextPosition <NSCopying>
+
+@property (nonatomic, readonly) NSInteger offset;
+
++ (instancetype)positionWithOffset:(NSInteger)offset;
+
+@end
+
+NS_ASSUME_NONNULL_END

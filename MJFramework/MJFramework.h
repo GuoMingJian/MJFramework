@@ -24,7 +24,7 @@ FOUNDATION_EXPORT const unsigned char MJFrameworkVersionString[];
 #import "MJTipsView.h"
 #import "MJAlertView.h"
 #import "MJLoopScrollView.h"
-#import "MJUnderlinedButton.h"
+#import "MJUnderlineButton.h"
 // UnitField
 #import "MJUnitField.h"
 // Reachability

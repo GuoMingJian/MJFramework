@@ -1,14 +1,14 @@
 //
-//  MJUnderlinedButton.m
+//  MJUnderlineButton.m
 //  MicroCoupletTaxi
 //
 //  Created by 郭明健 on 2020/9/18.
 //  Copyright © 2020 GuoMingJian. All rights reserved.
 //
 
-#import "MJUnderlinedButton.h"
+#import "MJUnderlineButton.h"
 
-@implementation MJUnderlinedButton
+@implementation MJUnderlineButton
 
 - (id)init {
     if (self = [super init]) {
@@ -18,9 +18,9 @@
     return self;
 }
 
-+ (MJUnderlinedButton*)underlinedButton
++ (MJUnderlineButton*)underlineButton
 {
-    MJUnderlinedButton* button = [[MJUnderlinedButton alloc] init];
+    MJUnderlineButton* button = [[MJUnderlineButton alloc] init];
     button.isShowLine = YES;
     button.lineSpac = 2;
     return button;

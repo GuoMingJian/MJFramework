@@ -7,7 +7,6 @@
 //
 
 #import "MJUnitField.h"
-#import "MJUnitFieldTextRange.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 NSNotificationName const WLUnitFieldDidBecomeFirstResponderNotification = @"WLUnitFieldDidBecomeFirstResponderNotification";
@@ -779,5 +778,57 @@ NSString *const WLUnitFieldDidResignFirstResponderNotification = @"WLUnitFieldDi
 - (nullable UITextRange *)characterRangeAtPoint:(CGPoint)point { return nil; }
 - (nullable UITextPosition *)closestPositionToPoint:(CGPoint)point withinRange:(MJUnitFieldTextRange *)range { return nil; }
 - (nullable UITextPosition *)closestPositionToPoint:(CGPoint)point { return nil; }
+
+@end
+
+#pragma mark -
+
+@implementation MJUnitFieldTextRange
+@dynamic range;
+@synthesize start = _start, end = _end;
+
+
++ (instancetype)rangeWithRange:(NSRange)range {
+    if (range.location == NSNotFound)
+        return nil;
+
+    MJUnitFieldTextPosition *start = [MJUnitFieldTextPosition positionWithOffset:range.location];
+    MJUnitFieldTextPosition *end = [MJUnitFieldTextPosition positionWithOffset:range.location + range.length];
+    return [self rangeWithStart:start end:end];
+}
+
++ (instancetype)rangeWithStart:(MJUnitFieldTextPosition *)start
+                           end:(MJUnitFieldTextPosition *)end {
+    if (!start || !end) return nil;
+    assert(start.offset <= end.offset);
+    MJUnitFieldTextRange *range = [[self alloc] init];
+    range->_start = start;
+    range->_end = end;
+    return range;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return [MJUnitFieldTextRange rangeWithStart:_start end:_end];
+}
+
+- (NSRange)range {
+    return NSMakeRange(_start.offset, _end.offset - _start.offset);
+}
+
+@end
+
+#pragma mark -
+
+@implementation MJUnitFieldTextPosition
+
++ (instancetype)positionWithOffset:(NSInteger)offset {
+    MJUnitFieldTextPosition *position = [[self alloc] init];
+    position->_offset = offset;
+    return position;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return [MJUnitFieldTextPosition positionWithOffset:self.offset];
+}
 
 @end
