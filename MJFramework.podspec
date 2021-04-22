@@ -2,9 +2,9 @@
 Pod::Spec.new do |s|
 
 
-  s.name         = "MJFramework"
-  s.version      = "1.2.2"
-  s.summary      = "some tools for iOS programming "
+  s.name         = 'MJFramework'
+  s.version      = '1.2.2'
+  s.summary      = 'some tools for iOS programming'
   s.homepage     = "https://github.com/GuoMingJian/MJFramework"
   s.license      = "MIT"
   s.author       = { "guomingjian" => "GuoMJ158@163.com" }
