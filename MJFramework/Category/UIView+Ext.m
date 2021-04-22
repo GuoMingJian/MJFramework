@@ -270,7 +270,7 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
 }
 
 /// 设置圆角
-- (void)setCornerRadius:(NSInteger)value
+- (void)setCornerRadius:(CGFloat)value
 {
     self.layer.cornerRadius = value;
     self.layer.masksToBounds = YES;

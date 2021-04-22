@@ -49,7 +49,7 @@ CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 - (void)removeAllSubviews;
 
 /// 设置圆角
-- (void)setCornerRadius:(NSInteger)value;
+- (void)setCornerRadius:(CGFloat)value;
 
 /// 自定义设置圆角(如：[view setCornerRadius:UIRectCornerTopLeft|UIRectCornerTopRight value:10];)
 - (void)setCornerRadius:(UIRectCorner)rectCorner

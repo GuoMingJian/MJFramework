@@ -827,7 +827,8 @@
 }
 
 /// 指定字符串随机生成指定长度的新字符串
-+ (NSString *)randomString:(NSInteger)length String:(NSString *)letters {
++ (NSString *)randomString:(NSInteger)length
+                    String:(NSString *)letters {
     NSMutableString *randomString = [NSMutableString stringWithCapacity: length];
     for (NSInteger i = 0; i < length; i++) {
         [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform((int)[letters length])]];

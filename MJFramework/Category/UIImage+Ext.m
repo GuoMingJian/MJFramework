@@ -41,27 +41,29 @@
 /// 图片压缩
 /// @param maxLengthKB 压缩到的大小 KB
 /// @param image 准备压缩的图片
+/// @param index 图片标记（压缩是异步过程，加个标记）
 /// @param block 压缩完成后的图片
 + (void)compressWithMaxLengthKB:(NSUInteger)maxLengthKB
                           image:(UIImage *)image
-                          block:(void (^)(NSData *imageData))block {
-    if (maxLengthKB <= 0 || [image isKindOfClass:[NSNull class]] || image == nil) block(nil);
-    
+                          index:(NSInteger)index
+                          block:(void (^)(NSData *imageData, NSUInteger index))block {
+    if (maxLengthKB <= 0 || [image isKindOfClass:[NSNull class]] || image == nil) block(nil, -1);
+
     maxLengthKB = maxLengthKB*1024;
-    
+
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
+
         CGFloat compression = 1;
         NSData *data = UIImageJPEGRepresentation(image, compression);
         NSLog(@"初始 : %ld KB", data.length/1024);
         if (data.length < maxLengthKB){
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"压缩完成： %zd kb", data.length/1024);
-                block(data);
+                block(data, index);
             });
             return;
         }
-        
+
         //质量压缩
         CGFloat scale = 1;
         CGFloat lastLength = 0;
@@ -75,17 +77,17 @@
             }
             scale = compression;
             lastLength = data.length;
-            
+
         }
         NSLog(@"压缩图片质量后: %ld KB", data.length / 1024);
         if (data.length < maxLengthKB){
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"压缩完成： %zd kb", data.length/1024);
-                block(data);
+                block(data, index);
             });
             return;
         }
-        
+
         //大小压缩
         UIImage *resultImage = [UIImage imageWithData:data];
         NSUInteger lastDataLength = 0;
@@ -104,10 +106,10 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"压缩完成： %ld kb", data.length/1024);
-            block(data);
+            block(data, index);
         });return;
     });
-    
+
 }
 
 /// 修复图片朝向
@@ -115,24 +117,24 @@
     // 无操作如果取向已经正确
     if (aImage.imageOrientation == UIImageOrientationUp)
         return aImage;
-    
+
     // 我们需要计算合适的变换使正直的形象。
     // 我们用2步骤:如果左/右/向下旋转,然后如果镜像翻转。
     CGAffineTransform transform = CGAffineTransformIdentity;
-    
+
     switch (aImage.imageOrientation) {
         case UIImageOrientationDown:
         case UIImageOrientationDownMirrored:
             transform = CGAffineTransformTranslate(transform, aImage.size.width, aImage.size.height);
             transform = CGAffineTransformRotate(transform, M_PI);
             break;
-            
+
         case UIImageOrientationLeft:
         case UIImageOrientationLeftMirrored:
             transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
             transform = CGAffineTransformRotate(transform, M_PI_2);
             break;
-            
+
         case UIImageOrientationRight:
         case UIImageOrientationRightMirrored:
             transform = CGAffineTransformTranslate(transform, 0, aImage.size.height);
@@ -141,14 +143,14 @@
         default:
             break;
     }
-    
+
     switch (aImage.imageOrientation) {
         case UIImageOrientationUpMirrored:
         case UIImageOrientationDownMirrored:
             transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
             transform = CGAffineTransformScale(transform, -1, 1);
             break;
-            
+
         case UIImageOrientationLeftMirrored:
         case UIImageOrientationRightMirrored:
             transform = CGAffineTransformTranslate(transform, aImage.size.height, 0);
@@ -157,7 +159,7 @@
         default:
             break;
     }
-    
+
     // 现在我们把底层CGImage到一个新的背景下,应用变换
     // 上面的计算。
     CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
@@ -173,18 +175,18 @@
             // Grr...
             CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
             break;
-            
+
         default:
             CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
             break;
     }
-    
+
     // 现在我们创建一个新的用户界面图像从绘图上下文
     CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
     UIImage *img = [UIImage imageWithCGImage:cgimg];
     CGContextRelease(ctx);
     CGImageRelease(cgimg);
-    
+
     return img;
 }
 
@@ -231,49 +233,49 @@
             color = [UIColor colorWithRed:174/255.0 green:174/255.0 blue:174/255.0 alpha:0.2];
         }
     }
-    //原始image的宽高
+    // 原始image的宽高
     CGFloat viewWidth = originalImage.size.width;
     CGFloat viewHeight = originalImage.size.height;
-    //为了防止图片失真，绘制区域宽高和原始图片宽高一样
+    // 为了防止图片失真，绘制区域宽高和原始图片宽高一样
     UIGraphicsBeginImageContext(CGSizeMake(viewWidth, viewHeight));
-    //先将原始image绘制上
+    // 先将原始image绘制上
     [originalImage drawInRect:CGRectMake(0, 0, viewWidth, viewHeight)];
-    //sqrtLength：原始image的对角线length。在水印旋转矩阵中只要矩阵的宽高是原始image的对角线长度，无论旋转多少度都不会有空白。
+    // sqrtLength：原始image的对角线length。在水印旋转矩阵中只要矩阵的宽高是原始image的对角线长度，无论旋转多少度都不会有空白。
     CGFloat sqrtLength = sqrt(viewWidth*viewWidth + viewHeight*viewHeight);
-    //文字的属性
+    // 文字的属性
     NSDictionary *attr = @{
-        //设置字体大小
+        // 设置字体大小
         NSFontAttributeName: font,
-        //设置文字颜色
+        // 设置文字颜色
         NSForegroundColorAttributeName :color,
     };
     NSString* mark = title;
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:mark attributes:attr];
-    //绘制文字的宽高
+    // 绘制文字的宽高
     CGFloat strWidth = attrStr.size.width;
     CGFloat strHeight = attrStr.size.height;
-    
-    //开始旋转上下文矩阵，绘制水印文字
+
+    // 开始旋转上下文矩阵，绘制水印文字
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    //将绘制原点（0，0）调整到源image的中心
+
+    // 将绘制原点（0，0）调整到源image的中心
     CGContextConcatCTM(context, CGAffineTransformMakeTranslation(viewWidth/2, viewHeight/2));
-    //以绘制原点为中心旋转
+    // 以绘制原点为中心旋转
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(CG_TRANSFORM_ROTATION));
-    //将绘制原点恢复初始值，保证当前context中心和源image的中心处在一个点(当前context已经旋转，所以绘制出的任何layer都是倾斜的)
+    // 将绘制原点恢复初始值，保证当前context中心和源image的中心处在一个点(当前context已经旋转，所以绘制出的任何layer都是倾斜的)
     CGContextConcatCTM(context, CGAffineTransformMakeTranslation(-viewWidth/2, -viewHeight/2));
-    
-    //计算需要绘制的列数和行数
+
+    // 计算需要绘制的列数和行数
     int horCount = sqrtLength / (strWidth + HORIZONTAL_SPACE) + 1;
     int verCount = sqrtLength / (strHeight + VERTICAL_SPACE) + 1;
-    
-    //此处计算出需要绘制水印文字的起始点，由于水印区域要大于图片区域所以起点在原有基础上移
+
+    // 此处计算出需要绘制水印文字的起始点，由于水印区域要大于图片区域所以起点在原有基础上移
     CGFloat orignX = -(sqrtLength-viewWidth)/2;
     CGFloat orignY = -(sqrtLength-viewHeight)/2;
-    
-    //在每列绘制时X坐标叠加
+
+    // 在每列绘制时X坐标叠加
     CGFloat tempOrignX = orignX;
-    //在每行绘制时Y坐标叠加
+    // 在每行绘制时Y坐标叠加
     CGFloat tempOrignY = orignY;
     for (int i = 0; i < horCount * verCount; i++) {
         [mark drawInRect:CGRectMake(tempOrignX, tempOrignY, strWidth, strHeight) withAttributes:attr];
@@ -284,64 +286,64 @@
             tempOrignX += (strWidth + HORIZONTAL_SPACE);
         }
     }
-    //根据上下文制作成图片
+    // 根据上下文制作成图片
     UIImage *finalImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     CGContextRestoreGState(context);
     return finalImg;
 }
 
-//根据图片获取图片的主色调
+// 根据图片获取图片的主色调
 + (UIColor*)mostColor:(UIImage*)image {
-    
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
     int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
 #else
     int bitmapInfo = kCGImageAlphaPremultipliedLast;
 #endif
-    //第一步 先把图片缩小 加快计算速度. 但越小结果误差可能越大
+    // 第一步 先把图片缩小 加快计算速度. 但越小结果误差可能越大
     CGSize thumbSize=CGSizeMake(image.size.width/2, image.size.height/2);
-    
+
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL,
                                                  thumbSize.width,
                                                  thumbSize.height,
-                                                 8,//bits per component
+                                                 8,// bits per component
                                                  thumbSize.width*4,
                                                  colorSpace,
                                                  bitmapInfo);
-    
+
     CGRect drawRect = CGRectMake(0, 0, thumbSize.width, thumbSize.height);
     CGContextDrawImage(context, drawRect, image.CGImage);
     CGColorSpaceRelease(colorSpace);
-    
-    //第二步 取每个点的像素值
+
+    // 第二步 取每个点的像素值
     unsigned char* data = CGBitmapContextGetData (context);
     if (data == NULL) {
         CGContextRelease(context);
         return nil;
     }
-    NSCountedSet *cls=[NSCountedSet setWithCapacity:thumbSize.width*thumbSize.height];
-    
-    for (int x=0; x<thumbSize.width; x++) {
-        for (int y=0; y<thumbSize.height; y++) {
+    NSCountedSet *cls = [NSCountedSet setWithCapacity:thumbSize.width*thumbSize.height];
+
+    for (int x = 0; x < thumbSize.width; x ++) {
+        for (int y = 0; y < thumbSize.height; y ++) {
             int offset = 4*(x*y);
             int red = data[offset];
             int green = data[offset+1];
             int blue = data[offset+2];
             int alpha =  data[offset+3];
-            if (alpha > 0) {//去除透明
-                if (red == 255 && green ==255 && blue == 255) {//去除白色
+            if (alpha > 0) { // 去除透明
+                if (red == 255 && green == 255 && blue == 255) {//去除白色
                 } else {
-                    NSArray *clr=@[@(red),@(green),@(blue),@(alpha)];
+                    NSArray *clr = @[@(red), @(green), @(blue), @(alpha)];
                     [cls addObject:clr];
                 }
-                
+
             }
         }
     }
     CGContextRelease(context);
-    //第三步 找到出现次数最多的那个颜色
+    // 第三步 找到出现次数最多的那个颜色
     NSEnumerator *enumerator = [cls objectEnumerator];
     NSArray *curColor = nil;
     NSArray *MaxColor=nil;

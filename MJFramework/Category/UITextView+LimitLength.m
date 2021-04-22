@@ -142,7 +142,7 @@ static const void *limitLinesKey = &limitLinesKey;
 #pragma mark -- 配置占位符标签
 
 - (void)setPlaceHolderLabel:(NSString *)placeholder {
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewChanged:) name:UITextViewTextDidChangeNotification object:self];
     if (self.placeholderLabel) {
         [self.placeholderLabel removeFromSuperview];
@@ -192,7 +192,7 @@ static const void *limitLinesKey = &limitLinesKey;
 #pragma mark -- 限制输入的位数
 
 - (void)limitLengthEvent {
-    
+
     if (self.limitLength) {//字数限制
         NSString *keyboardType = self.textInputMode.primaryLanguage;
         if ([keyboardType isEqualToString:@"zh-Hans"]) {//对简体中文做特殊处理>>>>高亮拼写问题
@@ -234,7 +234,7 @@ static const void *limitLinesKey = &limitLinesKey;
         if (wordCount > [self.limitLength integerValue]) {
             wordCount = [self.limitLength integerValue];
         }
-        self.wordCountLabel.text = [NSString stringWithFormat:@"%ld/%@",wordCount,self.limitLength];
+        self.wordCountLabel.text = [NSString stringWithFormat:@"%ld/%@", (long)wordCount, self.limitLength];
     }
     if (self.autoHeight) {
         CGSize size = [self getStringPlaceSize:self.text textFont:self.font bundingSize:CGSizeMake(CGRectGetWidth(self.frame), MAXFLOAT)];
@@ -243,7 +243,7 @@ static const void *limitLinesKey = &limitLinesKey;
             self.frame = CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, size.height + 25 <= oldRect.size.height ? oldRect.size.height : size.height + 25);
         }];
     }
-    
+
 }
 
 - (CGSize)getStringPlaceSize:(NSString *)string textFont:(UIFont *)font bundingSize:(CGSize)boundSize {

@@ -26,10 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片压缩
 /// @param maxLengthKB 压缩到的大小 KB
 /// @param image 准备压缩的图片
+/// @param index 图片标记（压缩是异步过程，加个标记）
 /// @param block 压缩完成后的图片
 + (void)compressWithMaxLengthKB:(NSUInteger)maxLengthKB
                           image:(UIImage *)image
-                          block:(void (^)(NSData *imageData))block;
+                          index:(NSInteger)index
+                          block:(void (^)(NSData *imageData, NSUInteger index))block;
 
 /// 修复图片朝向
 + (UIImage *)fixImageOrientation:(UIImage *)aImage;

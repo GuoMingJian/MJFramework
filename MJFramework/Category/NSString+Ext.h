@@ -185,7 +185,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)randomString:(int)length;
 
 /// 指定字符串随机生成指定长度的新字符串
-+ (NSString *)randomString:(NSInteger)length String:(NSString *)letters;
++ (NSString *)randomString:(NSInteger)length
+                    String:(NSString *)letters;
 
 /// MD5
 + (NSString *)md5:(NSString *)str;
