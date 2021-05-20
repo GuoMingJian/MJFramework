@@ -1,0 +1,11 @@
+MicroCoupletTaxi/Pods/AMapNavi/AMapNaviKit.framework/AMapNaviKit filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/AMapSearch/AMapSearchKit.framework/AMapSearchKit filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/AMapLocation/AMapLocationKit.framework/AMapLocationKit filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/AMapFoundation/AMapFoundationKit.framework/AMapFoundationKit filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/TXIMSDK_TUIKit_iOS/TUIKit/Classes/Third/voiceConvert/opencore-amrnb/libopencore-amrnb.a filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/TXLiteAVSDK_TRTC/TXLiteAVSDK_TRTC/TXLiteAVSDK_TRTC.framework/TXLiteAVSDK_TRTC filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/TXIMSDK_iOS/ImSDK.framework/ImSDK filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/WechatOpenSDK/OpenSDK1.8.7.1/libWeChatSDK.a filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/MicroCoupletTaxi/Classes/Lib/Recording/Lame/lame.framework/lame filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/JCore/libjcore-ios-2.4.0.a filter=lfs diff=lfs merge=lfs -text
+MicroCoupletTaxi/Pods/JPush/libjpush-ios-3.3.6.a filter=lfs diff=lfs merge=lfs -text
