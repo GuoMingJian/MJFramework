@@ -1,0 +1,35 @@
+Swift面试题
+#Swift与OC区别？
+&1、最明显的区别：OC一个类有.h和.m两个文件组成，而swift只有一个文件，所以整体的文件数量比OC有一定减少。
+2、Swift不像C语言和OC语言一样都必须有一个主函数main()作为程序的入口，swift程序从第一句开始向下顺序执行，一直到最后。
+3、Swift数据类型都会自动判断，只区分变量var和常量let。
+4、Bool类型更加严格，swift不再是OC的非0就是真，而是true才是真，false才是假。
+5、Swift的switch语句后面可以跟各种数据类型了，如int，字符串，区间都行，并且里面不用写break。
+#class和struct的区别？
+&1、class是引用类型，struct是值类型。
+2、class可以继承类、接口和被继承，struct只能继承接口，不能被继承。
+3、class有默认的无参构造函数、析构函数，struct没有默认的无参构造函数，且只能声明有参构造函数。
+4、class必须使用new初始化，结构体可以不用new初始化。
+5、作为参数传递时，class变量以按地址方式传递，而struct变量是以按值方式传递。
+#try try! try?的区别？
+&try：手动捕捉异常
+try?：系统帮我们处理，出现异常返回nil；没有异常返回对应的对象
+try!：直接告诉系统，该方法没有异常。如果出现异常程序会crash
+#NSArray与NSSet的区别？
+&NSArray内存中存储地址连续，而NSSet不连续
+NSSet效率高，内部使用hash查找；NSArray查找需要遍历
+NSSet通过anyObject访问元素，NSArray通过下标访问。
+#Swift 5.0升级更新了些啥？
+&1.“””多行字符串。
+#在Swift有哪些是值类型？Array值类型的性能问题。闭包是什么类型？闭包的捕获列表的类型？
+&值类型有：Int、Float、Bool、String、Array、Dictionary、Tuple（元组）；它们底层都是以结构体的形式实现的，所以结构体也是值类型，另外枚举Enum也属于值类型。
+#Swift单例如何保证只被创建一份？
+&Static let
+#Swift定义常量关键字，有什么区别？
+&let声明常量，var声明变量。
+#Swift3 Open和Public 对类的使用有什么影响？
+&Public修饰的class只允许外部模块调用，但是不允许继承。而open修饰的class既允许其他模块调用，也允许被子类继承。
+Public修饰的成员只允许其他模块调用，但不能被覆盖（override）。而open修饰的成员既允许被其他模块调用，也允许成员被覆盖。
+#如何理解swift写实复制？
+&简单来说，写实复制技术，只有需要改变的时候，才会对变量进行复制，如果不改变，大家都用一个内存，swift的标准库中，像Array、Dictionary、Set这样的集合类型是通过写时复制（copy-on-write）的技术实现的。
+#

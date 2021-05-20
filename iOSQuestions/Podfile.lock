@@ -1,0 +1,37 @@
+PODS:
+  - HandyJSON (5.0.0-beta.1)
+  - IQKeyboardManagerSwift (6.5.6)
+  - MJFramework (1.2.2)
+  - SnapKit (4.2.0)
+
+DEPENDENCIES:
+  - HandyJSON (from `https://github.com/alibaba/HandyJSON.git`, branch `dev_for_swift5.0`)
+  - IQKeyboardManagerSwift (~> 6.5.6)
+  - MJFramework (~> 1.2.2)
+  - SnapKit (~> 4.2.0)
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManagerSwift
+    - MJFramework
+    - SnapKit
+
+EXTERNAL SOURCES:
+  HandyJSON:
+    :branch: dev_for_swift5.0
+    :git: https://github.com/alibaba/HandyJSON.git
+
+CHECKOUT OPTIONS:
+  HandyJSON:
+    :commit: a2ba4e537711ae1fcd9183679c4db878eb171a78
+    :git: https://github.com/alibaba/HandyJSON.git
+
+SPEC CHECKSUMS:
+  HandyJSON: 582477127ab3ab65bd2e471815f1a7b846856978
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  MJFramework: 4aed0e5d540637403c32aeb12451b36be64a74c3
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+
+PODFILE CHECKSUM: 22729858c34218cdf0611fed8be59da22b087bc8
+
+COCOAPODS: 1.9.1
